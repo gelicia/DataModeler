@@ -1,5 +1,4 @@
-DataModeler
-===========
+#DataModeler
 *by Kyle Sletten*
 
 Copyright &copy; 2012 Kyle Sletten
