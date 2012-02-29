@@ -10,6 +10,10 @@ import datamodeler.models.Column;
 import datamodeler.models.Database;
 import datamodeler.models.Table;
 
+/**
+ * An adapter for MySQL databases
+ * @author Kyle Sletten
+ */
 public class MySQLAdapter implements Adapter {
 	@Override
 	public String getConnectionString(String host, int port, String username,
