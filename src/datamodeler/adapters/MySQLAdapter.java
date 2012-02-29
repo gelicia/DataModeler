@@ -12,6 +12,7 @@ import datamodeler.models.Table;
 
 /**
  * An adapter for MySQL databases
+ * 
  * @author Kyle Sletten
  */
 public class MySQLAdapter implements Adapter {
@@ -88,7 +89,7 @@ public class MySQLAdapter implements Adapter {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			
 		}
 	}
 }
