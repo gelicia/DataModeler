@@ -62,7 +62,7 @@ public class AdapterManager {
 	static {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(
-					"adapters.list"));
+					"config/adapters.list"));
 			String line;
 
 			while ((line = bufferedReader.readLine()) != null) {
