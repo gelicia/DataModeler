@@ -3,7 +3,7 @@
 
 ##Features
 * Use the ConnectionExplorer to visualize your databases, tables, and columns
-* Save information to an easily `diff`able format to track schema change
+* Save information to an easily `diff`-able format to track schema change
 * Save information to a simple XML format
 
 ##Dependencies
