@@ -10,6 +10,10 @@ import java.util.Map;
  * Factory class that maintains a list of all available adapters
  * 
  * @author Kyle Sletten
+ * 
+ *         When the AdapterManager is loaded, it will look for a configuration
+ *         file called <code>adapters.list</code> in the project root for a list
+ *         of adapters to attempt to load
  */
 public class AdapterManager {
 	private static Map<String, Adapter> adapters = new HashMap<String, Adapter>();
@@ -65,31 +69,33 @@ public class AdapterManager {
 				String name;
 				String className;
 
-				if (line.matches("\\S+\\s+\\S+")) {
-					String[] tokens = line.split("\\s+");
+				if (!line.isEmpty() && !line.matches("^\\s*#.*$")) {
+					if (line.matches("\\S+\\s+\\S+")) {
+						String[] tokens = line.split("\\s+");
 
-					name = tokens[0];
-					className = tokens[1];
-				} else {
-					className = line;
-					name = null;
-				}
-
-				try {
-					Adapter adapter = (Adapter) Class.forName(className)
-							.newInstance();
-
-					if (name == null) {
-						name = adapter.getClass().getSimpleName();
+						name = tokens[0];
+						className = tokens[1];
+					} else {
+						className = line;
+						name = null;
 					}
 
-					adapters.put(name, adapter);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace(System.err);
-				} catch (InstantiationException e) {
-					e.printStackTrace(System.err);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace(System.err);
+					try {
+						Adapter adapter = (Adapter) Class.forName(className)
+								.newInstance();
+
+						if (name == null) {
+							name = adapter.getClass().getSimpleName();
+						}
+
+						adapters.put(name, adapter);
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace(System.err);
+					} catch (InstantiationException e) {
+						e.printStackTrace(System.err);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace(System.err);
+					}
 				}
 			}
 
