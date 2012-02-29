@@ -62,11 +62,28 @@ public class AdapterManager {
 			String line;
 
 			while ((line = bufferedReader.readLine()) != null) {
+				String name;
+				String className;
+
+				if (line.matches("\\S+\\s+\\S+")) {
+					String[] tokens = line.split("\\s+");
+
+					name = tokens[0];
+					className = tokens[1];
+				} else {
+					className = line;
+					name = null;
+				}
+
 				try {
-					Adapter adapter = (Adapter) Class.forName(line)
+					Adapter adapter = (Adapter) Class.forName(className)
 							.newInstance();
 
-					adapters.put(adapter.getClass().getSimpleName(), adapter);
+					if (name == null) {
+						name = adapter.getClass().getSimpleName();
+					}
+
+					adapters.put(name, adapter);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace(System.err);
 				} catch (InstantiationException e) {
