@@ -7,6 +7,9 @@ import org.junit.Test;
 import datamodeler.adapters.AdapterManager;
 import datamodeler.components.AdapterChoice;
 
+/**
+ * @author Kyle Sletten
+ */
 public class AdapterChoiceTest {
 	@Test
 	public void testAdapterChoiceLoadsAdapters() {

@@ -9,10 +9,7 @@ import datamodeler.adapters.AdapterManager;
 import datamodeler.adapters.MySQLAdapter;
 
 /**
- * Test the loading of the <code>AdapterManager</code>
- * 
  * @author Kyle Sletten
- * 
  */
 public class AdapterManagerTest {
 	@Test
