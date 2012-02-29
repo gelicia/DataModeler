@@ -6,6 +6,9 @@
 * Save information to an easily `diff`-able format to track schema change
 * Save information to a simple XML format
 
+##Supported Databases
+* MySQL
+
 ##Dependencies
 To use the `MySQLAdapter`, you will need to download the `Connector/J` from [the MySQL website](http://www.mysql.com/downloads/connector/j/).
 
