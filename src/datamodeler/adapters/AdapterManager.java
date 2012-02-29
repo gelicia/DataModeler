@@ -1,5 +1,8 @@
 package datamodeler.adapters;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,12 +27,21 @@ public class AdapterManager {
 	}
 
 	/**
+	 * Get a list of available adapter names
+	 * 
+	 * @return A list of all available adapter names
+	 */
+	public static Iterable<String> getAdapterNames() {
+		return adapters.keySet();
+	}
+
+	/**
 	 * Get a list of available adapters
 	 * 
 	 * @return A list of all available adapters
 	 */
-	public static Iterable<String> getAdapterNames() {
-		return adapters.keySet();
+	public static Iterable<Adapter> getAdapters() {
+		return adapters.values();
 	}
 
 	/**
@@ -41,5 +53,32 @@ public class AdapterManager {
 	 */
 	public static Adapter getAdapterByName(String name) {
 		return adapters.get(name);
+	}
+
+	static {
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(
+					"adapters.list"));
+			String line;
+
+			while ((line = bufferedReader.readLine()) != null) {
+				try {
+					Adapter adapter = (Adapter) Class.forName(line)
+							.newInstance();
+
+					adapters.put(adapter.getClass().getSimpleName(), adapter);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace(System.err);
+				} catch (InstantiationException e) {
+					e.printStackTrace(System.err);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+
+			bufferedReader.close();
+		} catch (IOException e) {
+
+		}
 	}
 }

@@ -87,9 +87,9 @@ public class MySQLAdapter implements Adapter {
 
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (Exception e) {
-			
+
 		}
 	}
 }

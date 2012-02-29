@@ -13,8 +13,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import datamodeler.adapters.AdapterManager;
-import datamodeler.adapters.MySQLAdapter;
 import datamodeler.components.AlertDialog;
 import datamodeler.components.ConnectionExplorer;
 import datamodeler.components.ConnectionForm;
@@ -27,13 +25,6 @@ import datamodeler.listeners.WindowCloser;
 
 public class DataModeler {
 	public static void main(String[] args) {
-		// TODO replace with config
-		try {
-			AdapterManager.registerAdapter("MySQL", new MySQLAdapter());
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
-		}
-
 		final Frame frame = new Frame("DataModeler");
 
 		final ConnectionForm connectionForm = new ConnectionForm();
