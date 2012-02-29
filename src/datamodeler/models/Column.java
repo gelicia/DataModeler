@@ -1,5 +1,11 @@
 package datamodeler.models;
 
+/**
+ * Meta-data about a database column
+ * 
+ * @author Kyle Sletten
+ * 
+ */
 public class Column {
 	private Table table;
 	private String name;

@@ -3,6 +3,12 @@ package datamodeler.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Meta-data about the table
+ * 
+ * @author Kyle Sletten
+ * 
+ */
 public class Table {
 	private Database database;
 	private String name;

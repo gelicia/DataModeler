@@ -7,6 +7,11 @@ import datamodeler.models.Column;
 import datamodeler.models.Database;
 import datamodeler.models.Table;
 
+/**
+ * A simple XML format
+ * 
+ * @author Kyle Sletten
+ */
 public class XMLFormat implements Format<Database> {
 	public void write(Iterable<Database> databases, Writer writer)
 			throws IOException {

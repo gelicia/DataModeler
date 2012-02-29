@@ -21,6 +21,11 @@ import datamodeler.events.ConnectionEvent;
 import datamodeler.listeners.ConnectionListener;
 import datamodeler.models.Connection;
 
+/**
+ * An AWT form to allow a user to specify a custom database connection
+ * 
+ * @author Kyle Sletten
+ */
 @SuppressWarnings("serial")
 public class ConnectionForm extends Panel {
 	private final AdapterChoice adapter;

@@ -5,6 +5,12 @@ import java.util.HashSet;
 import datamodeler.events.ConnectionEvent;
 import datamodeler.listeners.ConnectionListener;
 
+/**
+ * An object that allows simple propagation of a <code>ConnectionEvent</code> to
+ * a set of listeners
+ * 
+ * @author Kyle Sletten
+ */
 public class ConnectionDelegate {
 	private HashSet<ConnectionListener> connectionListeners = new HashSet<ConnectionListener>();
 

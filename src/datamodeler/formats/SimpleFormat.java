@@ -7,6 +7,12 @@ import datamodeler.models.Column;
 import datamodeler.models.Database;
 import datamodeler.models.Table;
 
+/**
+ * A simple, easily diff-able format
+ * 
+ * @author Kyle Sletten
+ * 
+ */
 public class SimpleFormat implements Format<Database> {
 	public void write(Iterable<Database> databases, Writer writer)
 			throws IOException {

@@ -5,6 +5,12 @@ import java.sql.SQLException;
 
 import datamodeler.adapters.Adapter;
 
+/**
+ * Meta-data about a connection
+ * 
+ * @author Kyle Sletten
+ * 
+ */
 public class Connection {
 	private java.sql.Connection connection;
 	private Adapter adapter;

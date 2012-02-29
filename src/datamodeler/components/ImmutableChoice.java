@@ -3,7 +3,9 @@ package datamodeler.components;
 import java.awt.Choice;
 
 /**
- * A <code>java.awt.Choice</code> that does not allow items to be added/removed once it has been initialized
+ * A <code>java.awt.Choice</code> that does not allow items to be added/removed
+ * once it has been initialized
+ * 
  * @author Kyle Sletten
  */
 @SuppressWarnings("serial")
@@ -11,7 +13,9 @@ public class ImmutableChoice extends Choice {
 	private boolean initialized = false;
 
 	/**
-	 * Signal that the list is fully populated and any further attempts to update the object will result in an <code>UnsupportedOperationException</code>
+	 * Signal that the list is fully populated and any further attempts to
+	 * update the object will result in an
+	 * <code>UnsupportedOperationException</code>
 	 */
 	protected void initialize() {
 		this.initialized = true;

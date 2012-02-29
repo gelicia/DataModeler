@@ -2,6 +2,11 @@ package datamodeler.events;
 
 import datamodeler.models.Connection;
 
+/**
+ * An event that signals an attempt to connect to a database
+ * 
+ * @author Kyle Sletten
+ */
 public class ConnectionEvent {
 	private Connection connection;
 	private String host;

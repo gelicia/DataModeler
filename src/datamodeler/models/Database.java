@@ -3,6 +3,12 @@ package datamodeler.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Meta-data about the database
+ * 
+ * @author Kyle Sletten
+ * 
+ */
 public class Database {
 	private String name;
 	private List<Table> tables;
@@ -49,7 +55,7 @@ public class Database {
 			}
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.getName();

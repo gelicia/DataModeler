@@ -23,6 +23,9 @@ import datamodeler.formats.XMLFormat;
 import datamodeler.listeners.ConnectionListener;
 import datamodeler.listeners.WindowCloser;
 
+/**
+ * @author Kyle Sletten
+ */
 public class DataModeler {
 	public static void main(String[] args) {
 		final Frame frame = new Frame("DataModeler");
