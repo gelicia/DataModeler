@@ -11,14 +11,16 @@ public class Column {
 	private String name;
 	private String columnType;
 	private boolean nullable;
+	private KeyType keyType;
 	private String defaultValue;
 
 	public Column(Table table, String name, String type, boolean nullable,
-			String defaultValue) {
+			KeyType keyType, String defaultValue) {
 		this.setTable(table);
 		this.setName(name);
 		this.setColumnType(type);
 		this.setNullable(nullable);
+		this.setKeyType(keyType);
 		this.setDefaultValue(defaultValue);
 	}
 
@@ -65,6 +67,14 @@ public class Column {
 
 	public void setNullable(boolean nullable) {
 		this.nullable = nullable;
+	}
+
+	public KeyType getKeyType() {
+		return this.keyType;
+	}
+
+	public void setKeyType(KeyType keyType) {
+		this.keyType = keyType;
 	}
 
 	public String getDefaultValue() {

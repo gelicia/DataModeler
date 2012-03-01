@@ -8,6 +8,7 @@ import java.util.List;
 
 import datamodeler.models.Column;
 import datamodeler.models.Database;
+import datamodeler.models.KeyType;
 import datamodeler.models.Table;
 
 /**
@@ -71,9 +72,26 @@ public class MySQLAdapter implements Adapter {
 					+ table + ";");
 
 			while (resultSet.next()) {
+				KeyType keyType = null;
+
+				switch (resultSet.getString(4)) {
+				case "PRI":
+					keyType = KeyType.PRIMARY;
+					break;
+				case "MUL":
+					keyType = KeyType.MULTIPLE;
+					break;
+				case "UNI":
+					keyType = KeyType.UNIQUE;
+					break;
+				default:
+					keyType = KeyType.NONE;
+					break;
+				}
+
 				new Column(table, resultSet.getString(1), resultSet
 						.getString(2).toUpperCase(), resultSet.getString(3)
-						.equals("YES"), resultSet.getString(5));
+						.equals("YES"), keyType, resultSet.getString(5));
 			}
 
 			resultSet.close();

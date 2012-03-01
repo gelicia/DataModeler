@@ -11,10 +11,11 @@ import datamodeler.models.Column;
 
 @SuppressWarnings("serial")
 public class ColumnView extends Panel {
-	private TextField name;
-	private TextField columnType;
-	private TextField nullable;
-	private TextField defaultValue;
+	final private TextField name = new TextField();
+	final private TextField columnType = new TextField();
+	final private TextField nullable = new TextField();
+	final private KeyTypeChoice key = new KeyTypeChoice();
+	final private TextField defaultValue = new TextField();
 
 	public ColumnView() {
 		super(new BorderLayout());
@@ -23,16 +24,19 @@ public class ColumnView extends Panel {
 		Panel inputPanel = new Panel(new GridLayout(0, 1));
 
 		labelPanel.add(new Label("Name"));
-		inputPanel.add(this.name = new TextField());
+		inputPanel.add(this.name);
 
 		labelPanel.add(new Label("Type"));
-		inputPanel.add(this.columnType = new TextField());
+		inputPanel.add(this.columnType);
 
 		labelPanel.add(new Label("Nullable"));
-		inputPanel.add(this.nullable = new TextField());
+		inputPanel.add(this.nullable);
+
+		labelPanel.add(new Label("Key"));
+		inputPanel.add(this.key);
 
 		labelPanel.add(new Label("Default"));
-		inputPanel.add(this.defaultValue = new TextField());
+		inputPanel.add(this.defaultValue);
 
 		super.add(labelPanel, BorderLayout.WEST);
 		super.add(inputPanel, BorderLayout.CENTER);
@@ -56,6 +60,7 @@ public class ColumnView extends Panel {
 		this.name.setText(column.getName());
 		this.columnType.setText(column.getColumnType());
 		this.nullable.setText(column.isNullable() ? "YES" : "NO");
+		this.key.setSelectedKeyType(column.getKeyType());
 		this.defaultValue.setText(column.getDefaultValue());
 	}
 }
