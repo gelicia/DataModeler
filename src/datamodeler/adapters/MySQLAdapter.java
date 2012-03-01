@@ -72,7 +72,7 @@ public class MySQLAdapter implements Adapter {
 					+ table + ";");
 
 			while (resultSet.next()) {
-				KeyType keyType = null;
+				KeyType keyType;
 
 				switch (resultSet.getString(4)) {
 				case "PRI":
