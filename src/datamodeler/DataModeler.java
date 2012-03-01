@@ -17,11 +17,11 @@ import datamodeler.awt.components.AlertDialog;
 import datamodeler.awt.components.ConnectionExplorer;
 import datamodeler.awt.components.ConnectionForm;
 import datamodeler.awt.components.FormatMenuItem;
+import datamodeler.awt.listeners.WindowCloser;
 import datamodeler.events.ConnectionEvent;
 import datamodeler.formats.SimpleFormat;
 import datamodeler.formats.XMLFormat;
 import datamodeler.listeners.ConnectionListener;
-import datamodeler.listeners.WindowCloser;
 
 /**
  * @author Kyle Sletten

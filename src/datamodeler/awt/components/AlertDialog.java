@@ -9,7 +9,7 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import datamodeler.listeners.WindowCloser;
+import datamodeler.awt.listeners.WindowCloser;
 
 @SuppressWarnings("serial")
 public class AlertDialog extends Dialog {

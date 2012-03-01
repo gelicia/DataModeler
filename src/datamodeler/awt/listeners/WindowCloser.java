@@ -1,4 +1,4 @@
-package datamodeler.listeners;
+package datamodeler.awt.listeners;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
