@@ -16,12 +16,14 @@ public class AdapterChoiceTest {
 		AdapterChoice adapterChoice = new AdapterChoice();
 
 		for (String name : AdapterManager.getAdapterNames()) {
+			boolean found = false;
 			for (int i = 0; i < adapterChoice.getItemCount(); i++) {
 				if (adapterChoice.getItem(i).equals(name)) {
+					found = true;
 					break;
 				}
-				Assert.fail();
 			}
+			Assert.assertTrue(name, found);
 		}
 	}
 }
