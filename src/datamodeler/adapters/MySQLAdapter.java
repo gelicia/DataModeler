@@ -16,6 +16,10 @@ import datamodeler.models.Table;
  * @author Kyle Sletten
  */
 public class MySQLAdapter implements Adapter {
+	public MySQLAdapter() throws ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+	}
+
 	@Override
 	public String getConnectionString(String host, int port, String username,
 			String password) {
@@ -83,13 +87,5 @@ public class MySQLAdapter implements Adapter {
 	@Override
 	public int getDefaultPort() {
 		return 3306;
-	}
-
-	static {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (Exception e) {
-
-		}
 	}
 }
