@@ -1,4 +1,4 @@
-package test.datamodeler.components;
+package test.datamodeler.awt.components;
 
 import junit.framework.Assert;
 
