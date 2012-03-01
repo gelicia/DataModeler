@@ -1,12 +1,15 @@
-#DataModeler
+# DataModeler
 *by Kyle Sletten*
 
-##Features
+## Dependencies
+* Requires [JRE 1.7](http://www.oracle.com/technetwork/java/javase/downloads/jre-7u3-download-1501631.html)
+
+## Features
 * Use the ConnectionExplorer to visualize your databases, tables, and columns
 * Save information to an easily `diff`-able format to track schema change
 * Save information to a simple XML format
 
-##Supported Databases
+## Supported Databases
 * MySQL (depends on `Connector/J` from [the MySQL website](http://www.mysql.com/downloads/connector/j/))
 
 ##Copyright
