@@ -13,10 +13,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import datamodeler.components.AlertDialog;
-import datamodeler.components.ConnectionExplorer;
-import datamodeler.components.ConnectionForm;
-import datamodeler.components.FormatMenuItem;
+import datamodeler.awt.components.AlertDialog;
+import datamodeler.awt.components.ConnectionExplorer;
+import datamodeler.awt.components.ConnectionForm;
+import datamodeler.awt.components.FormatMenuItem;
 import datamodeler.events.ConnectionEvent;
 import datamodeler.formats.SimpleFormat;
 import datamodeler.formats.XMLFormat;
@@ -27,7 +27,7 @@ import datamodeler.listeners.WindowCloser;
  * @author Kyle Sletten
  */
 public class DataModeler {
-	public static void main(String[] args) {
+	public static void awt() {
 		final Frame frame = new Frame("DataModeler");
 
 		final ConnectionForm connectionForm = new ConnectionForm();
@@ -107,5 +107,17 @@ public class DataModeler {
 
 		frame.pack();
 		frame.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		if (args != null && args.length > 0) {
+			switch (args[0]) {
+			case "awt":
+				awt();
+				break;
+			}
+		} else {
+			awt();
+		}
 	}
 }

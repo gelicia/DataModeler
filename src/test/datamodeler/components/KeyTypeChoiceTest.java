@@ -4,7 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import datamodeler.components.KeyTypeChoice;
+import datamodeler.awt.components.KeyTypeChoice;
 import datamodeler.models.KeyType;
 
 public class KeyTypeChoiceTest {

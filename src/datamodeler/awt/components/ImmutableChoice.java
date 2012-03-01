@@ -1,4 +1,4 @@
-package datamodeler.components;
+package datamodeler.awt.components;
 
 import java.awt.Choice;
 

@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import datamodeler.adapters.AdapterManager;
-import datamodeler.components.AdapterChoice;
+import datamodeler.awt.components.AdapterChoice;
 
 /**
  * @author Kyle Sletten
