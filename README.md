@@ -14,8 +14,11 @@
 This file is a list of `Adapter` classes to be initialized by the `DriverManager`.
 
 > \# sample adapters.list
+
 > \# USAGE:
+
 > \# [DisplayName] [path.to.AdapterClass]
+
 > MySQL datamodeler.adapters.MySQLAdapter
 
 ##Copyright
