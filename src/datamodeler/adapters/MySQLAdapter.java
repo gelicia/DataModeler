@@ -74,19 +74,18 @@ public class MySQLAdapter implements Adapter {
 			while (resultSet.next()) {
 				KeyType keyType;
 
-				switch (resultSet.getString(4)) {
-				case "PRI":
-					keyType = KeyType.PRIMARY;
-					break;
-				case "MUL":
-					keyType = KeyType.MULTIPLE;
-					break;
-				case "UNI":
-					keyType = KeyType.UNIQUE;
-					break;
-				default:
+				String value = resultSet.getString(4);
+
+				if (value == null || value.isEmpty()) {
 					keyType = KeyType.NONE;
-					break;
+				} else if (value.equals("PRI")) {
+					keyType = KeyType.PRIMARY;
+				} else if (value.equals("MUL")) {
+					keyType = KeyType.MULTIPLE;
+				} else if (value.equals("UNI")) {
+					keyType = KeyType.UNIQUE;
+				} else {
+					keyType = KeyType.NONE;
 				}
 
 				new Column(table, resultSet.getString(1), resultSet

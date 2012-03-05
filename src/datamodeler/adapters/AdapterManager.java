@@ -101,7 +101,7 @@ public class AdapterManager {
 
 			bufferedReader.close();
 		} catch (IOException e) {
-
+			e.printStackTrace(System.err);
 		}
 	}
 }

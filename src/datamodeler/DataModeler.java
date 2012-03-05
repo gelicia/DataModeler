@@ -111,10 +111,10 @@ public class DataModeler {
 
 	public static void main(String[] args) {
 		if (args != null && args.length > 0) {
-			switch (args[0]) {
-			case "awt":
+			if (args[0].equals("awt")) {
 				awt();
-				break;
+			} else {
+				awt();
 			}
 		} else {
 			awt();
