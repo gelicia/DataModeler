@@ -9,6 +9,14 @@
 ## Supported Databases
 * MySQL (depends on `Connector/J` from [the MySQL website](http://www.mysql.com/downloads/connector/j/))
 
+## Configuration
+### adapters.list
+This file is a list of `Adapter` classes to be initialized by the `DriverManager`.
+> # sample adapters.list
+> # USAGE:
+> # [DisplayName] [path.to.AdapterClass]
+> MySQL datamodeler.adapters.MySQLAdapter
+
 ##Copyright
 Copyright &copy; 2012 Kyle Sletten
 

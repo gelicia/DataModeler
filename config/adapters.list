@@ -1,4 +1,0 @@
-# adapters.list
-# USAGE:
-#	<name> <path.to.adapter.Class>
-MySQL datamodeler.adapters.MySQLAdapter

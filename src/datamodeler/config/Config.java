@@ -27,7 +27,7 @@ public class Config {
 		return file;
 	}
 
-	public static String[] getConfigurationLines(String name)
+	public static Iterable<String> getConfigurationLines(String name)
 			throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(
 				getConfigFile(name)));
@@ -42,13 +42,7 @@ public class Config {
 			}
 		}
 
-		String[] configLines = new String[lines.size()];
-
-		for (int i = 0; i < lines.size(); i++) {
-			configLines[i] = lines.get(i);
-		}
-
-		return configLines;
+		return lines;
 	}
 
 	static {
