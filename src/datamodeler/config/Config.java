@@ -36,7 +36,8 @@ public class Config {
 
 		for (String line = reader.readLine(); line != null; line = reader
 				.readLine()) {
-			if (!line.isEmpty() && !line.matches("^\\s*#.*$")) {
+			if (!line.isEmpty() && !line.matches("^\\s*$")
+					&& !line.matches("^\\s*#.*$")) {
 				lines.add(line);
 			}
 		}
