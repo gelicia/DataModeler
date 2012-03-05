@@ -1,10 +1,10 @@
 package datamodeler.adapters;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import datamodeler.config.Config;
 
 /**
  * Factory class that maintains a list of all available adapters
@@ -61,45 +61,37 @@ public class AdapterManager {
 
 	static {
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(
-					"config/adapters.list"));
-			String line;
-
-			while ((line = bufferedReader.readLine()) != null) {
+			for (String line : Config.getConfigurationLines("adapters.list")) {
 				String name;
 				String className;
 
-				if (!line.isEmpty() && !line.matches("^\\s*#.*$")) {
-					if (line.matches("\\S+\\s+\\S+")) {
-						String[] tokens = line.split("\\s+");
+				if (line.matches("\\S+\\s+\\S+")) {
+					String[] tokens = line.split("\\s+");
 
-						name = tokens[0];
-						className = tokens[1];
-					} else {
-						className = line;
-						name = null;
+					name = tokens[0];
+					className = tokens[1];
+				} else {
+					className = line;
+					name = null;
+				}
+
+				try {
+					Adapter adapter = (Adapter) Class.forName(className)
+							.newInstance();
+
+					if (name == null) {
+						name = adapter.getClass().getSimpleName();
 					}
 
-					try {
-						Adapter adapter = (Adapter) Class.forName(className)
-								.newInstance();
-
-						if (name == null) {
-							name = adapter.getClass().getSimpleName();
-						}
-
-						adapters.put(name, adapter);
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace(System.err);
-					} catch (InstantiationException e) {
-						e.printStackTrace(System.err);
-					} catch (IllegalAccessException e) {
-						e.printStackTrace(System.err);
-					}
+					adapters.put(name, adapter);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace(System.err);
+				} catch (InstantiationException e) {
+					e.printStackTrace(System.err);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace(System.err);
 				}
 			}
-
-			bufferedReader.close();
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 		}
