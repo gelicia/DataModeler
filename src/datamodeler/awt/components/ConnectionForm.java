@@ -1,11 +1,14 @@
 package datamodeler.awt.components;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
@@ -50,15 +53,14 @@ public class ConnectionForm extends Panel {
 			@Override
 			public void keyPressed(KeyEvent keyEvent) {
 				if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
-					ConnectionForm.this.setEnabled(false);
 					ConnectionForm.this.getConnection();
-					ConnectionForm.this.setEnabled(true);
 				}
 			}
 		};
 
 		Panel titlePanel = new Panel(new GridLayout(0, 1));
 		Panel inputPanel = new Panel(new GridLayout(0, 1));
+		Panel buttonPanel = new Panel(new GridLayout(1, 0));
 
 		titlePanel.add(new Label("Adapter"));
 		inputPanel.add(this.adapter = new AdapterChoice());
@@ -90,8 +92,22 @@ public class ConnectionForm extends Panel {
 		this.password.addKeyListener(keyListener);
 		this.password.setEchoChar('*');
 
+		Button connectButton = new Button("Connect");
+		//Button saveButton = new Button("Save");
+
+		connectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				ConnectionForm.this.getConnection();
+			}
+		});
+
+		buttonPanel.add(connectButton);
+		//buttonPanel.add(saveButton);
+
 		super.add(titlePanel, BorderLayout.WEST);
 		super.add(inputPanel, BorderLayout.CENTER);
+		super.add(buttonPanel, BorderLayout.SOUTH);
 
 		this.host.setPreferredSize(new Dimension(200, 0));
 	}
@@ -104,21 +120,17 @@ public class ConnectionForm extends Panel {
 		this.connectionListeners.removeConnectionListener(connectionListener);
 	}
 
-	public void setEditable(boolean editable) {
-		this.adapter.setEnabled(editable);
-		this.host.setEditable(editable);
-		this.port.setEditable(editable);
-		this.username.setEditable(editable);
-		this.password.setEditable(editable);
-	}
-
 	public ConnectionEvent getConnection() {
+		ConnectionForm.this.setEnabled(false);
+
 		if (this.connectionEvent == null) {
-			return this.connectionEvent = this.startConnection();
-		} else {
-			return this.connectionListeners
-					.connectionAttempted(this.connectionEvent);
+			this.connectionEvent = this.startConnection();
 		}
+
+		ConnectionForm.this.setEnabled(true);
+
+		return this.connectionListeners
+				.connectionAttempted(this.connectionEvent);
 	}
 
 	private ConnectionEvent startConnection() {
@@ -144,8 +156,6 @@ public class ConnectionForm extends Panel {
 			connection = null;
 		}
 
-		return this.connectionListeners
-				.connectionAttempted(new ConnectionEvent(connection, host,
-						port, username, password));
+		return new ConnectionEvent(connection, host, port, username, password);
 	}
 }
