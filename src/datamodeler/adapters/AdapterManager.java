@@ -61,7 +61,7 @@ public class AdapterManager {
 
 	static {
 		try {
-			for (String line : Config.getConfigurationLines("adapters.list")) {
+			for (String line : Config.getGlobalConfigLines("adapters.list")) {
 				String name;
 				String className;
 

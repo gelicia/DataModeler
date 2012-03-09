@@ -9,28 +9,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Config {
-	private static File configDir;
-	private static Map<String, File> configFiles;
+	private static File globalConfigDir;
+	private static Map<String, File> globalConfigFiles;
+	private static File userConfigDir;
+	private static Map<String, File> userConfigFiles;
 
-	public static File getConfigFile(String name) throws IOException {
-		File file = configFiles.get(name);
+	private static File getConfigFile(Map<String, File> fileMap,
+			File configDir, String fileName) throws IOException {
+		File file = fileMap.get(fileName);
 
 		if (file == null) {
-			file = new File(configDir, name);
+			file = new File(configDir, fileName);
 
 			if (!file.exists()) {
 				file.createNewFile();
-				configFiles.put(name, file);
+				fileMap.put(fileName, file);
 			}
 		}
 
 		return file;
 	}
 
-	public static Iterable<String> getConfigurationLines(String name)
+	public static File getGlobalConfigFile(String name) throws IOException {
+		return getConfigFile(globalConfigFiles, globalConfigDir, name);
+	}
+
+	public static File getUserConfigFile(String name) throws IOException {
+		return getConfigFile(userConfigFiles, userConfigDir, name);
+	}
+
+	private static Iterable<String> getConfigLines(File file)
 			throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(
-				getConfigFile(name)));
+		BufferedReader reader = new BufferedReader(new FileReader(file));
 
 		ArrayList<String> lines = new ArrayList<String>();
 
@@ -45,16 +55,43 @@ public class Config {
 		return lines;
 	}
 
-	static {
-		configDir = new File("config");
+	public static Iterable<String> getGlobalConfigLines(String name)
+			throws IOException {
+		return getConfigLines(getGlobalConfigFile(name));
+	}
 
-		if (!configDir.exists()) {
-			configDir.mkdir();
-		} else if (!configDir.isDirectory()) {
-			configDir.delete();
-			configDir.mkdir();
+	public static Iterable<String> getUserConfigLines(String name)
+			throws IOException {
+		return getConfigLines(getUserConfigFile(name));
+	}
+
+	static {
+		boolean windows = System.getProperty("os.name").startsWith("Windows");
+
+		globalConfigDir = new File("config");
+
+		if (globalConfigDir.exists() && !globalConfigDir.isDirectory()) {
+			globalConfigDir.delete();
+		}
+		if (!globalConfigDir.exists()) {
+			globalConfigDir.mkdir();
 		}
 
-		configFiles = new HashMap<String, File>();
+		if (windows) {
+			userConfigDir = new File(
+					"%USERPROFILE%\\AppData\\Local\\DataModeler");
+		} else {
+			userConfigDir = new File("~/.DataModeler");
+		}
+
+		if (userConfigDir.exists() && !userConfigDir.isDirectory()) {
+			userConfigDir.delete();
+		}
+		if (!userConfigDir.exists()) {
+			userConfigDir.mkdir();
+		}
+
+		globalConfigFiles = new HashMap<String, File>();
+		userConfigFiles = new HashMap<String, File>();
 	}
 }

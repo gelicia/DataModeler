@@ -27,7 +27,7 @@ public class Connection {
 				.getConnectionString(host, port, username, password));
 	}
 
-	public Iterable<Database> getDatabases() throws SQLException {
+	public synchronized Iterable<Database> getDatabases() throws SQLException {
 		if (this.databases == null) {
 			this.databases = this.adapter.getDatabases(this.connection
 					.createStatement());
@@ -35,14 +35,14 @@ public class Connection {
 		return this.databases;
 	}
 
-	public Iterable<Table> getTables(Database database) throws SQLException {
+	public synchronized Iterable<Table> getTables(Database database) throws SQLException {
 		if (database.getTables() == null || database.getTables().isEmpty()) {
 			this.adapter.getTables(this.connection.createStatement(), database);
 		}
 		return database.getTables();
 	}
 
-	public Iterable<Column> getColumns(Table table) throws SQLException {
+	public synchronized Iterable<Column> getColumns(Table table) throws SQLException {
 		if (table.getColumns() == null || table.getColumns().isEmpty()) {
 			this.adapter.getColumns(this.connection.createStatement(), table);
 		}
