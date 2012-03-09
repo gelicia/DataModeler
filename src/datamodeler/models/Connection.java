@@ -35,14 +35,16 @@ public class Connection {
 		return this.databases;
 	}
 
-	public synchronized Iterable<Table> getTables(Database database) throws SQLException {
+	public synchronized Iterable<Table> getTables(Database database)
+			throws SQLException {
 		if (database.getTables() == null || database.getTables().isEmpty()) {
 			this.adapter.getTables(this.connection.createStatement(), database);
 		}
 		return database.getTables();
 	}
 
-	public synchronized Iterable<Column> getColumns(Table table) throws SQLException {
+	public synchronized Iterable<Column> getColumns(Table table)
+			throws SQLException {
 		if (table.getColumns() == null || table.getColumns().isEmpty()) {
 			this.adapter.getColumns(this.connection.createStatement(), table);
 		}
