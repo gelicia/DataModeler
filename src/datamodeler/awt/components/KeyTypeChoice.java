@@ -8,7 +8,7 @@ public class KeyTypeChoice extends ImmutableChoice {
 		for (KeyType keyType : KeyType.values()) {
 			super.add(keyType.toString());
 		}
-		this.initialize();
+		this.setMutable(false);
 	}
 
 	public KeyType getSelectedKeyType() {

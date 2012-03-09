@@ -10,68 +10,68 @@ import java.awt.Choice;
  */
 @SuppressWarnings("serial")
 public class ImmutableChoice extends Choice {
-	private boolean initialized = false;
+	private boolean mutable = true;
 
 	/**
 	 * Signal that the list is fully populated and any further attempts to
 	 * update the object will result in an
 	 * <code>UnsupportedOperationException</code>
 	 */
-	protected void initialize() {
-		this.initialized = true;
+	protected void setMutable(boolean mutable) {
+		this.mutable = mutable;
 	}
 
 	@Override
 	public void add(String item) {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.add(item);
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 
 	@Override
 	public void addItem(String item) {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.addItem(item);
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 
 	@Override
 	public void insert(String item, int index) {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.insert(item, index);
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 
 	@Override
 	public void remove(int position) {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.remove(position);
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 
 	@Override
 	public void remove(String item) {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.remove(item);
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 
 	@Override
 	public void removeAll() {
-		if (this.initialized) {
-			throw new UnsupportedOperationException();
-		} else {
+		if (this.mutable) {
 			super.removeAll();
+		} else {
+			throw new UnsupportedOperationException();
 		}
 	}
 }

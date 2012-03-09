@@ -4,7 +4,9 @@ import datamodeler.adapters.Adapter;
 import datamodeler.adapters.AdapterManager;
 
 /**
- * An <code>ImmutableChoice</code> that lists the available <code>Adapter</code>s
+ * An <code>ImmutableChoice</code> that lists the available <code>Adapter</code>
+ * s
+ * 
  * @author Kyle Sletten
  */
 @SuppressWarnings("serial")
@@ -13,11 +15,12 @@ public class AdapterChoice extends ImmutableChoice {
 		for (String name : AdapterManager.getAdapterNames()) {
 			super.add(name);
 		}
-		super.initialize();
+		super.setMutable(false);
 	}
 
 	/**
-	 * Uses the currently selected value to get an <code>Adapter</code> 
+	 * Uses the currently selected value to get an <code>Adapter</code>
+	 * 
 	 * @return The selected <code>Adapter</code>
 	 */
 	public Adapter getSelectedAdapter() {
