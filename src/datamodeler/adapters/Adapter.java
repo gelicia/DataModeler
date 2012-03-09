@@ -62,13 +62,13 @@ public interface Adapter {
 	 * 
 	 * @param statement
 	 *            the statement to use
-	 * @param tables
+	 * @param table
 	 *            the table to query
 	 * @return All of the columns in the specified table
 	 * @throws SQLException
 	 *             passed on from one of the queries performed in the method
 	 */
-	public Iterable<Column> getColumns(Statement statement, Table tables)
+	public Iterable<Column> getColumns(Statement statement, Table table)
 			throws SQLException;
 
 	/**

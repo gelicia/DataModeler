@@ -17,10 +17,6 @@ import datamodeler.models.Table;
  * @author Kyle Sletten
  */
 public class MySQLAdapter implements Adapter {
-	public MySQLAdapter() throws ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver");
-	}
-
 	@Override
 	public String getConnectionString(String host, int port, String username,
 			String password) {
