@@ -140,6 +140,7 @@ public class ConnectionForm extends Panel {
 		try {
 			connection = new Connection(adapter, host, port, username, password);
 		} catch (SQLException e) {
+			e.printStackTrace(System.err);
 			connection = null;
 		}
 
