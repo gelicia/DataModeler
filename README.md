@@ -10,14 +10,22 @@
 * MySQL (depends on `Connector/J` from [the MySQL website](http://www.mysql.com/downloads/connector/j/))
 
 ## Configuration
-### adapters.list
+### Global
+#### adapters.list
 This file is a list of `Adapter` classes to be initialized by the `DriverManager`.
 
     # sample adapters.list
-    # USAGE:
-    # [DisplayName] [path.to.AdapterClass]
     
-    MySQL datamodeler.adapters.MySQLAdapter
+    DisplayName path.to.AdapterClass
+
+### User
+#### connections.xml
+This file is a list of connection elements that can be used to auto-populate the `ConnectionForm` with values.
+
+    <!-- sample connections.xml -->
+	<connections>
+		<connection host="localhost" username="root" password="password" port="1234"/>
+	</connections>
 
 ##Copyright
 Copyright &copy; 2012 Kyle Sletten
