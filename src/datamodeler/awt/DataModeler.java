@@ -130,6 +130,7 @@ public class DataModeler implements Runnable {
 		    if (connections.item(i) instanceof Element) {
 			Element element = (Element) connections.item(i);
 
+			final String adapter = element.getAttribute("adapter");
 			final String host = element.getAttribute("host");
 			final String username = element
 				.getAttribute("username");
@@ -144,11 +145,12 @@ public class DataModeler implements Runnable {
 				    @Override
 				    public void actionPerformed(
 					    ActionEvent actionEvent) {
+					connectionForm.setName(adapter);
 					connectionForm.setHost(host);
 					connectionForm.setUsername(username);
 					connectionForm.setPassword(password);
 					connectionForm.setPort(port);
-					
+
 					formDialog.pack();
 					formDialog.setVisible(true);
 				    }

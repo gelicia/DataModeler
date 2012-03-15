@@ -24,7 +24,7 @@ This file is a list of connection elements that can be used to auto-populate the
 
     <!-- sample connections.xml -->
 	<connections>
-		<connection host="localhost" username="root" password="password" port="1234"/>
+		<connection adapter="DisplayName" host="localhost" username="root" password="password" port="1234"/>
 	</connections>
 
 ##Copyright

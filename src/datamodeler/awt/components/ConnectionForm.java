@@ -112,6 +112,14 @@ public class ConnectionForm extends Panel {
 	this.host.setPreferredSize(new Dimension(200, 0));
     }
 
+    public String getAdapter() {
+	return this.adapter.getSelectedItem();
+    }
+
+    public void setAdapter(String adapter) {
+	this.adapter.select(adapter);
+    }
+
     public String getHost() {
 	return this.host.getText();
     }
