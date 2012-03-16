@@ -84,8 +84,7 @@ public class AdapterManager {
 		    }
 
 		    adapters.put(name, adapter);
-		} catch (ClassNotFoundException | InstantiationException
-			| IllegalAccessException e) {
+		} catch (Exception e) {
 		    e.printStackTrace(System.err);
 		}
 	    }

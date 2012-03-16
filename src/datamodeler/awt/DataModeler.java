@@ -12,13 +12,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import datamodeler.awt.components.AlertDialog;
 import datamodeler.awt.components.ConnectionExplorer;
@@ -114,7 +110,7 @@ public class DataModeler implements Runnable {
 	try {
 	    userConnectionsConfig = Config
 		    .getUserConfigElement("connections.xml");
-	} catch (ParserConfigurationException | SAXException | IOException e) {
+	} catch (Exception e) {
 	    userConnectionsConfig = null;
 	    e.printStackTrace(System.err);
 	}
