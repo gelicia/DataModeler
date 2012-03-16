@@ -11,6 +11,7 @@
 
 ## Configuration
 ### Global
+Global configuration files are found in the `/config` directory of the program root.
 #### adapters.list
 This file is a list of `Adapter` classes to be initialized by the `DriverManager`.
 
@@ -19,6 +20,7 @@ This file is a list of `Adapter` classes to be initialized by the `DriverManager
     DisplayName path.to.AdapterClass
 
 ### User
+User configuration files are found in `%USERPROFILE%\AppData\Local\DataModeler` on Windows machines and `$HOME/.DataModeler` on all others.
 #### connections.xml
 This file is a list of connection elements that can be used to auto-populate the `ConnectionForm` with values.
 
