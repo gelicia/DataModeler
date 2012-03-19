@@ -18,59 +18,58 @@ import datamodeler.models.Database;
 
 @SuppressWarnings("serial")
 public class FormatMenuItem extends MenuItem {
-	public FormatMenuItem(final Frame frame,
-			final ConnectionForm connectionForm, final Format<Database> format,
-			final String title, int keyBinding, boolean useShiftModifier) {
-		super(title);
+    public FormatMenuItem(final Frame frame,
+	    final ConnectionForm connectionForm, final Format<Database> format,
+	    final String title, int keyBinding, boolean useShiftModifier) {
+	super(title);
 
-		super.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				frame.setEnabled(false);
+	super.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent actionEvent) {
+		frame.setEnabled(false);
 
-				ConnectionEvent connectionEvent = connectionForm
-						.getConnection();
+		ConnectionEvent connectionEvent = connectionForm
+			.getConnection();
 
-				Iterable<Database> databases;
+		Iterable<Database> databases;
 
-				if (connectionEvent.isSuccessful()
-						&& connectionEvent.getConnection().loadMetaData()) {
-					try {
-						databases = connectionEvent.getConnection()
-								.getDatabases();
-					} catch (SQLException e) {
-						databases = null;
-					}
+		if (connectionEvent.isSuccessful()) {
+		    try {
+			databases = connectionEvent.getConnection()
+				.getDatabases();
+		    } catch (SQLException e) {
+			databases = null;
+		    }
 
-					if (databases != null) {
-						FileDialog fileDialog = new FileDialog(frame, title,
-								FileDialog.SAVE);
+		    if (databases != null) {
+			FileDialog fileDialog = new FileDialog(frame, title,
+				FileDialog.SAVE);
 
-						fileDialog.setVisible(true);
+			fileDialog.setVisible(true);
 
-						String directory = fileDialog.getDirectory();
-						String fileName = fileDialog.getFile();
+			String directory = fileDialog.getDirectory();
+			String fileName = fileDialog.getFile();
 
-						if (fileName != null && !fileName.isEmpty()) {
-							try {
-								BufferedWriter bufferedWriter = new BufferedWriter(
-										new FileWriter(new File(directory,
-												fileName)));
+			if (fileName != null && !fileName.isEmpty()) {
+			    try {
+				BufferedWriter bufferedWriter = new BufferedWriter(
+					new FileWriter(new File(directory,
+						fileName)));
 
-								format.write(databases, bufferedWriter);
+				format.write(databases, bufferedWriter);
 
-								bufferedWriter.close();
-							} catch (IOException e) {
-								e.printStackTrace(System.err);
-							}
-						}
-					}
-				}
-
-				frame.setEnabled(true);
+				bufferedWriter.close();
+			    } catch (IOException e) {
+				e.printStackTrace(System.err);
+			    }
 			}
-		});
+		    }
+		}
 
-		super.setShortcut(new MenuShortcut(keyBinding, useShiftModifier));
-	}
+		frame.setEnabled(true);
+	    }
+	});
+
+	super.setShortcut(new MenuShortcut(keyBinding, useShiftModifier));
+    }
 }

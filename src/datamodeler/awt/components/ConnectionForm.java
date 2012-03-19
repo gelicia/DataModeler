@@ -186,20 +186,12 @@ public class ConnectionForm extends Panel {
 	Connection connection;
 	Adapter adapter = this.adapter.getSelectedAdapter();
 	String host = this.host.getText();
-	int port = adapter.getDefaultPort();
+	String port = this.port.getText();
 	String username = this.username.getText();
 	String password = this.password.getText();
 
-	if (this.port.getText() != null && !this.port.getText().isEmpty()) {
-	    try {
-		port = Integer.parseInt(this.port.getText());
-	    } catch (Exception e) {
-		port = Integer.MIN_VALUE;
-	    }
-	}
-
 	try {
-	    connection = new Connection(adapter, host, port, username, password);
+	    connection = adapter.getConnection(host, port, username, password);
 	} catch (SQLException e) {
 	    e.printStackTrace(System.err);
 	    connection = null;

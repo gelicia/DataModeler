@@ -26,8 +26,6 @@ import datamodeler.events.ConnectionEvent;
 import datamodeler.formats.SimpleFormat;
 import datamodeler.formats.XMLFormat;
 import datamodeler.listeners.ConnectionListener;
-import datamodeler.models.Connection;
-import datamodeler.threads.ThreadManager;
 
 public class DataModeler implements Runnable {
     @Override
@@ -55,16 +53,6 @@ public class DataModeler implements Runnable {
 	    public void connectionAttempted(ConnectionEvent connectionEvent) {
 		if (connectionEvent.isSuccessful()) {
 		    formDialog.setVisible(false);
-
-		    final Connection connection = connectionEvent
-			    .getConnection();
-
-		    ThreadManager.run(new Runnable() {
-			@Override
-			public void run() {
-			    connection.loadMetaData();
-			}
-		    });
 		} else {
 		    Dialog errorDialog = new AlertDialog(frame,
 			    "Connection Error",

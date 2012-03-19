@@ -10,11 +10,11 @@ import datamodeler.models.Connection;
 public class ConnectionEvent {
 	private Connection connection;
 	private String host;
-	private int port;
+	private String port;
 	private String username;
 	private String password;
 
-	public ConnectionEvent(Connection connection, String host, int port,
+	public ConnectionEvent(Connection connection, String host, String port,
 			String username, String password) {
 		super();
 		this.connection = connection;
@@ -32,7 +32,7 @@ public class ConnectionEvent {
 		return this.host;
 	}
 
-	public int getPort() {
+	public String getPort() {
 		return this.port;
 	}
 

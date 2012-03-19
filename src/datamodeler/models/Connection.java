@@ -1,6 +1,5 @@
 package datamodeler.models;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import datamodeler.adapters.Adapter;
@@ -16,15 +15,10 @@ public class Connection {
     private Adapter adapter;
     private Iterable<Database> databases;
 
-    private Connection(Adapter adapter) {
+    public Connection(Adapter adapter, java.sql.Connection connection)
+	    throws SQLException {
 	this.adapter = adapter;
-    }
-
-    public Connection(Adapter adapter, String host, int port, String username,
-	    String password) throws SQLException {
-	this(adapter);
-	this.connection = DriverManager.getConnection(this.adapter
-		.getConnectionString(host, port, username, password));
+	this.connection = connection;
     }
 
     public Iterable<Database> getDatabases() throws SQLException {
@@ -56,18 +50,5 @@ public class Connection {
 	    }
 	}
 	return table.getColumns();
-    }
-
-    public boolean loadMetaData() {
-	try {
-	    for (Database database : this.getDatabases()) {
-		for (Table table : this.getTables(database)) {
-		    this.getColumns(table);
-		}
-	    }
-	    return true;
-	} catch (SQLException e) {
-	    return false;
-	}
     }
 }
