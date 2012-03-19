@@ -27,7 +27,7 @@ public class Connection {
 		.getConnectionString(host, port, username, password));
     }
 
-    public synchronized Iterable<Database> getDatabases() throws SQLException {
+    public Iterable<Database> getDatabases() throws SQLException {
 	synchronized (this) {
 	    if (this.databases == null) {
 		this.databases = this.adapter.getDatabases(this.connection
