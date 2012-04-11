@@ -8,6 +8,7 @@
 
 ## Supported Databases
 * MySQL (depends on `Connector/J` from [the MySQL website](http://www.mysql.com/downloads/connector/j/))
+* MS SQL Server 2005 to present (depends on the sqljdbc4.jar JDBC driver from [Microsoft](http://msdn.microsoft.com/en-us/sqlserver/aa937724))
 
 ## Configuration
 ### Global

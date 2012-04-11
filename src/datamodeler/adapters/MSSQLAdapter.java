@@ -1,12 +1,11 @@
 package datamodeler.adapters;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import net.sourceforge.jtds.jdbcx.JtdsDataSource;
 
 import datamodeler.models.Column;
 import datamodeler.models.Database;
@@ -24,21 +23,8 @@ public class MSSQLAdapter implements Adapter {
 	
 	public Connection getConnection (String host, String port, String username, String password) throws SQLException
 	{
-		JtdsDataSource ds = new JtdsDataSource();
-
-        // MS SQL Server Host Name
-        ds.setServerName(host);
-
-        // Port
-        ds.setPortNumber(Integer.parseInt(port));
-
-        // Database Name
-        ds.setDatabaseName("master");
-
-        ds.setUser(username);
-        ds.setPassword(password);
-        
-		return new Connection(this, ds.getConnection());
+		return new Connection(this, DriverManager.getConnection("jdbc:sqlserver://" + host + ":" + port + ";user=" + username
+				+ ";password=" + password));
 	}
 
 	public Iterable<Database> getDatabases(Statement statement) throws SQLException {
